@@ -1,0 +1,246 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE grammar PUBLIC "-//W3C//DTD GRAMMAR 1.0//EN"
+                  "http://www.w3.org/TR/speech-grammar/grammar.dtd">
+
+<grammar xmlns="http://www.w3.org/2001/06/grammar" xml:lang="pt-PT"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://www.w3.org/2001/06/grammar 
+                             http://www.w3.org/TR/speech-grammar/grammar.xsd"
+         version="1.0" mode="voice" root="initialRule">
+
+  <rule id="initialRule" scope="public">
+    <item>
+      Jarbas
+      <item>
+        <ruleref uri="#command">
+          <tag>out.command = out.command + rules.command;</tag>
+        </ruleref>
+      </item>
+    </item>
+  </rule>
+
+  <rule id="command">
+    <one-of>
+      <item>
+        <item> abre </item>
+        <ruleref url="#cmdAbre">
+          <tag>out.command = out.command + rules.cmdAbre;</tag>
+        </ruleref>
+      </item>
+      <item>
+        <item> muda para </item>
+        <ruleref url="#cmdMuda">
+          <tag>out.command = out.command + rules.cmdMuda;</tag>
+        </ruleref>
+      </item>
+      <item>
+        <item> fecha </item>
+        <ruleref url="#cmdFecha">
+          <tag>out.command = out.command + rules.cmdFecha;</tag>
+        </ruleref>
+      </item>
+      <item>
+        <item> bloqueia </item>
+        <tag>out="block";</tag>
+      </item>
+      <item>
+        <item> iniciar </item>
+        <tag>out="initialize";</tag>
+      </item>
+      <item>
+        <item> desligar </item>
+        <tag>out="turnoff";</tag>
+      </item>
+      <item>
+        <item> xau </item>
+        <tag>out="exit";</tag>
+      </item>
+      <item>
+        <item> faz contas </item>
+        <tag>out="calc";</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="cmdAbre">
+    <one-of>
+      <item>
+        <one-of>
+          <item>o navegador</item>
+          <item>o browser</item>
+          <item>browser</item>
+          <item>navegador</item>
+        </one-of>
+        <tag>out="browser";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>a caixa de correio</item>
+          <item>o email</item>
+          <item>o correio</item>
+        </one-of>
+        <tag>out="email";</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="cmdMuda">
+    <one-of>
+      <item>
+        <ruleref uri="#janela">
+          <tag>out.command = out.command + rules.janela;</tag>
+        </ruleref>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="cmdFecha">
+    <one-of>
+      <item>
+        <ruleref uri="#janela">
+          <tag>out.command = out.command + rules.janela;</tag>
+        </ruleref>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="janela">
+    <item>
+      <one-of>
+        <item>
+          a janela
+          <one-of>
+            <ruleref uri="#digito">
+              <tag>out.command.janela = out.command.janela + rules.digito;</tag>
+            </ruleref>
+            <ruleref uri="#nextPrev">
+              <tag>out.command.janela = out.command.janela + rules.nextPrev;</tag>
+            </ruleref>
+          </one-of>
+        </item>
+        <item>
+          a
+          <ruleref uri="#digito">
+            <tag>out="digit";</tag>
+          </ruleref>
+          janela
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="digito">
+    <one-of>
+      <item>
+        <one-of>
+          <item>um</item>
+          <item>primeira</item>
+          <item>primeiro</item>
+        </one-of>
+        <tag>out="1";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>dois</item>
+          <item>segunda</item>
+          <item>segundo</item>
+        </one-of>
+        <tag>out="2";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>três</item>
+          <item>terceira</item>
+          <item>terceiro</item>
+        </one-of>
+        <tag>out="3";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>quatro</item>
+          <item>quarta</item>
+          <item>quarto</item>
+        </one-of>
+        <tag>out="4";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>cinco</item>
+          <item>quinta</item>
+          <item>quinto</item>
+        </one-of>
+        <tag>out="5";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>seis</item>
+          <item>sexta</item>
+          <item>sexto</item>
+        </one-of>
+        <tag>out="6";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>sete</item>
+          <item>sétima</item>
+          <item>sétimo</item>
+        </one-of>
+        <tag>out="7";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>oito</item>
+          <item>oitava</item>
+          <item>oitavo</item>
+        </one-of>
+        <tag>out="8";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>nove</item>
+          <item>nona</item>
+          <item>nono</item>
+        </one-of>
+        <tag>out="9";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>zero</item>
+          <item>última</item>
+          <item>último</item>
+        </one-of>
+        <tag>out="0";</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="nextPrev">
+    <one-of>
+      <item>
+        <one-of>
+          <item>atual</item>
+          <item>esta</item>
+          <item>este</item>
+        </one-of>
+        <tag>out="this";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>anterior</item>
+          <item>antes</item>
+          <item>atrás</item>
+        </one-of>
+        <tag>out="previous";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>próximo</item>
+          <item>próxima</item>
+          <item>a seguir</item>
+        </one-of>
+        <tag>out="next";</tag>
+      </item>
+    </one-of>
+  </rule>
+</grammar>
