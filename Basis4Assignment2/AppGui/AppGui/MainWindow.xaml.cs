@@ -16,11 +16,12 @@ namespace AppGui
     public partial class MainWindow : Window
     {
         private MmiCommunication mmiC;
+        private Tts t;
         public MainWindow()
         {
             InitializeComponent();
 
-
+            t = new Tts();
             mmiC = new MmiCommunication("localhost",8000, "User1", "GUI");
             mmiC.Message += MmiC_Message;
             mmiC.Start();
@@ -34,8 +35,14 @@ namespace AppGui
             var com = doc.Descendants("command").FirstOrDefault().Value;
             dynamic json = JsonConvert.DeserializeObject(com);
 
-            Shape _s = null;
             switch ((string)json.recognized[0].ToString())
+            {
+                case "ok":
+                    t.Speak("Ok");
+                    break;
+            }
+
+            /*switch ((string)json.recognized[0].ToString())
             {
                 case "SQUARE": _s = rectangle;
                     break;
@@ -59,10 +66,10 @@ namespace AppGui
                         _s.Fill = Brushes.Red;
                         break;
                 }
-            });
-            
+            });*/
 
 
-        }
+
+         }
     }
 }

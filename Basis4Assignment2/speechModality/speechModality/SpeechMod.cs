@@ -36,8 +36,8 @@ namespace speechModality
 
             //load pt recognizer
             sre = new SpeechRecognitionEngine(new System.Globalization.CultureInfo("pt-PT"));
-            //string grpath = Environment.CurrentDirectory + "\\jarbasGrammar.grxml";
-            string grpath = Environment.CurrentDirectory + @"\test.grxml";
+            string grpath = Environment.CurrentDirectory + "\\jarbasGrammar.grxml";
+            //string grpath = Environment.CurrentDirectory + @"\test.grxml";
             gr = new Grammar(grpath, "initialRule");
             Console.WriteLine(grpath);
             sre.LoadGrammar(gr);
@@ -67,7 +67,7 @@ namespace speechModality
                 json+= "\"" + resultSemantic.Value.Value +"\", ";
             }
             json = json.Substring(0, json.Length - 2);
-            json += "], \"confidence\": " + e.Result.Confidence + "}";
+            json += "], \"confidence\": " + e.Result.Confidence.ToString("r").Replace(",",".") + "}";
 
             var exNot = lce.ExtensionNotification(e.Result.Audio.StartTime+"", e.Result.Audio.StartTime.Add(e.Result.Audio.Duration)+"",e.Result.Confidence, json);
 
