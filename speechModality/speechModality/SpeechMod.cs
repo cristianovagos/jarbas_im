@@ -10,6 +10,7 @@ namespace speechModality
 {
     public class SpeechMod
     {
+        private float minimum_confidence_threshold = 0.65F;
         private SpeechRecognitionEngine sre;
         private Grammar gr;
         public event EventHandler<SpeechEventArg> Recognized;
@@ -58,7 +59,10 @@ namespace speechModality
         private void Sre_SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
             onRecognized(new SpeechEventArg(){Text = e.Result.Text, Confidence = e.Result.Confidence, Final = true});
-            
+
+            if (e.Result.Confidence < minimum_confidence_threshold)
+                return;
+
             //SEND
             // IMPORTANT TO KEEP THE FORMAT {"recognized":["SHAPE","COLOR"]}
             string json = "{ \"recognized\": [";
@@ -67,11 +71,9 @@ namespace speechModality
                 json+= "\"" + resultSemantic.Value.Value +"\", ";
             }
             json = json.Substring(0, json.Length - 2);
-            json += "], \"confidence\": " + e.Result.Confidence.ToString("r").Replace(",",".") + "}";
+            json += "] }";
 
             var exNot = lce.ExtensionNotification(e.Result.Audio.StartTime+"", e.Result.Audio.StartTime.Add(e.Result.Audio.Duration)+"",e.Result.Confidence, json);
-
-            Console.WriteLine(json);
 
             mmic.Send(exNot);
         }

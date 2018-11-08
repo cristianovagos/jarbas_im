@@ -16,6 +16,90 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         <ruleref uri="#response"/>
         <tag>out.response = rules.response;</tag>
       </item>
+      <item>
+        <ruleref uri="#config"/>
+        <tag>out.config = rules.config;</tag>
+      </item>
+      <item>
+        <ruleref uri="#voiceconfig"/>
+        <tag>out.voiceconfig = rules.voiceconfig;</tag>
+      </item>
+      <item>
+        <ruleref uri="#voicegender"/>
+        <tag>out.gender = rules.voicegender;</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="config">
+    <one-of>
+      <item> quero configurar-te </item>
+      <item>
+        <item>
+          <one-of>
+            <item> vamos mudar as </item>
+            <item> que tal mudarmos as </item>
+          </one-of>
+        </item>
+        <item repeat="0-1">
+          tuas
+        </item>
+        opções 
+        <tag>out = "config"</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="voicegender">
+    <one-of>
+      <item>
+        <one-of>
+          <item> homem </item>
+          <item> senhor </item>
+          <item> rapaz </item>
+        </one-of>
+        <tag>out = "male"</tag>
+      </item>
+      <item>
+        <one-of>
+          <item> mulher </item>
+          <item> senhora </item>
+          <item> rapariga </item>
+        </one-of>
+        <tag>out = "female"</tag>
+      </item>
+    </one-of>
+  </rule>
+  
+  <rule id="voiceconfig">
+    <item repeat="0-1">
+      <one-of>
+        <item> quero ser tratado por </item>
+        <item> trata-me por </item>
+        <item> chama-me </item>
+      </one-of>
+    </item>
+    <one-of>
+      <item> 
+        chefe 
+        <tag>out = "chefe"</tag>
+      </item>
+      <item>
+        boss
+        <tag>out = "boss"</tag>
+      </item>
+      <item>
+        mestre
+        <tag>out = "mestre"</tag>
+      </item>
+      <item>
+        professor
+        <tag>out = "professor"</tag>
+      </item>
+      <item>
+        engenheiro
+        <tag>out = "engenheiro"</tag>
+      </item>
     </one-of>
   </rule>
 
@@ -79,19 +163,13 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
     <one-of>
       <item> vamos ver o site da UA </item>
       <item> que tal está o site da UA </item>
+      <item> vamos navegar </item>
     </one-of>
     <tag>out = "website"</tag>
   </rule>
 
   <rule id="cmdWindows">
-    <item repeat="0-1">
-      <one-of>
-        <item> se faz favor </item>
-        <item> por favor </item>
-        <item> se possível </item>
-      </one-of>
-    </item>
-
+    <ruleref uri="#initiator"/>
     <one-of>
       <item>
         fecha a janela
@@ -334,6 +412,8 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         <item> se faz favor </item>
         <item> por favor </item>
         <item> se possível </item>
+        <item> já </item>
+        <item> agora </item>
       </one-of>
     </item>
   </rule>
@@ -356,6 +436,10 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
           <item> não quero </item>
         </one-of>
         <tag>out = "not_ok"</tag>
+      </item>
+      <item>
+        cancelar
+        <tag>out = "cancel"</tag>
       </item>
     </one-of>
   </rule>
