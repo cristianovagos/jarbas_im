@@ -10,7 +10,7 @@ namespace speechModality
 {
     public class SpeechMod
     {
-        private float minimum_confidence_threshold = 0.65F;
+        private float minimum_confidence_threshold = 0.6F;
         private SpeechRecognitionEngine sre;
         private Grammar gr;
         public event EventHandler<SpeechEventArg> Recognized;
@@ -32,7 +32,6 @@ namespace speechModality
             lce = new LifeCycleEvents("ASR", "FUSION","speech-1", "acoustic", "command"); // LifeCycleEvents(string source, string target, string id, string medium, string mode)
             //mmic = new MmiCommunication("localhost",9876,"User1", "ASR");  //PORT TO FUSION - uncomment this line to work with fusion later
             mmic = new MmiCommunication("localhost", 8000, "User1", "ASR"); // MmiCommunication(string IMhost, int portIM, string UserOD, string thisModalityName)
-
             mmic.Send(lce.NewContextRequest());
 
             //load pt recognizer

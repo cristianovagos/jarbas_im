@@ -137,13 +137,6 @@ namespace AppGui
 
         }
 
-        public void changeVoiceGender(bool male) {
-            if (male)
-                tts.SelectVoiceByHints(VoiceGender.Male, VoiceAge.NotSet);
-            else
-                tts.SelectVoiceByHints(VoiceGender.Female, VoiceAge.NotSet);
-        }
-
         /*
          * tts_SpeakCompleted
          */
@@ -157,5 +150,16 @@ namespace AppGui
                 player.Stream = null;  //  NEW 2015
             }
         }
+
+        public void changeVoiceGender(bool male)
+        {
+            if (male)
+                tts.SelectVoiceByHints(VoiceGender.Male, VoiceAge.NotSet);
+            else
+                tts.SelectVoiceByHints(VoiceGender.Female, VoiceAge.NotSet);
+        }
     }
 }
+
+
+
