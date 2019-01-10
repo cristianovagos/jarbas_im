@@ -1,0 +1,39 @@
+﻿<?xml version="1.0"?>
+<grammar xml:lang="pt-PT" version="1.0" xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0">
+	<rule id="rootRule" scope="public">
+    <one-of>
+      <item>
+        <item>
+          <ruleref uri="#object"/>
+          <tag>out.shape=rules.latest();</tag>
+        </item>
+        <item>
+          <ruleref uri="#color"/>
+          <tag>out.color=rules.latest();</tag>
+        </item>
+      </item>
+      <item>
+        <ruleref uri="#object"/>
+        <tag>out.shape=rules.latest();</tag>
+      </item>
+    </one-of>
+	</rule>
+	<rule id="object">
+	  <one-of>
+		<item>quadrado<tag>out="SQUARE"</tag></item>
+		<item>círculo<tag>out="CIRCLE"</tag></item>
+		<item>triângulo<tag>out="TRIANGLE"</tag></item>
+	  </one-of>
+	</rule>
+	<rule id="color">
+	  <one-of>
+		<item>verde<tag>out="GREEN"</tag></item>
+		<item>azul<tag>out="BLUE"</tag></item>
+		<item>vermelho<tag>out="RED"</tag></item>
+      <item>
+        amarelo<tag>out="YELLOW"</tag>
+      </item>
+
+    </one-of>
+	</rule>
+</grammar>

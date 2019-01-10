@@ -1,0 +1,1055 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+
+<grammar version="1.0" xml:lang="pt-PT" mode="voice" root="initialRule"
+xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
+
+  <rule id="initialRule" scope="public">
+    <one-of>
+      <item>
+        Jarbas
+        <ruleref uri="#command"/>
+        <ruleref uri="#terminator"/>
+        <tag>out.command = rules.command;</tag>
+      </item>
+	  <item>
+        <ruleref uri="#modolazer"/>
+        <tag>out.lazer = "lazer";</tag>
+      </item>
+	  <item>
+        <ruleref uri="#modotrabalho"/>
+        <tag>out.trabalho = "trabalho";</tag>
+      </item>
+      <item>
+        <ruleref uri="#response"/>
+        <tag>out.response = rules.response;</tag>
+      </item>
+      <item>
+        <ruleref uri="#config"/>
+        <tag>out.config = rules.config;</tag>
+      </item>
+      <item>
+        <ruleref uri="#voiceconfig"/>
+        <tag>out.voiceconfig = rules.voiceconfig;</tag>
+      </item>
+      <item>
+        <ruleref uri="#voicegender"/>
+        <tag>out.gender = rules.voicegender;</tag>
+      </item>
+      <item>
+        <ruleref uri="#greeting"/>
+        <tag>out.greeting = "greeting";</tag>
+      </item>
+      <item>
+        <ruleref uri="#obrigado"/>
+        <tag>out.thanks = "obrigado";</tag>
+      </item>
+      <item>
+        <ruleref uri="#sad"/>
+        <tag>out.sad = "sad";</tag>
+      </item>
+    </one-of>
+  </rule>
+  
+  <rule id="greeting">
+    <item> olá 
+      <item repeat="0-1">
+        Jarbas
+      </item>
+    </item>
+  </rule>
+  
+  <rule id="modolazer">
+    <item>
+	  <item repeat="0-1">
+        Jarbas
+      </item>
+	  <item repeat="0-1">
+        muda para o
+      </item>
+		modo 
+	  <item repeat="0-1">
+        de
+      </item>
+		lazer 
+      <ruleref uri="#terminator"/>
+    </item>
+  </rule>
+  
+  <rule id="modotrabalho">
+    <item>
+	  <item repeat="0-1">
+        Jarbas
+      </item>
+	  <item repeat="0-1">
+        muda para o
+      </item>
+		modo 
+	  <item repeat="0-1">
+        de
+      </item>
+		trabalho 
+      <ruleref uri="#terminator"/>
+    </item>
+  </rule>
+  
+  <rule id="obrigado">
+    <one-of>
+      <item> obrigado </item>
+      <item>
+        <item repeat="0-1">
+          <one-of>
+            <item> está </item>
+            <item> tá </item>
+          </one-of>
+        </item>
+        <one-of>
+          <item> demais </item>
+          <item> brutal </item>
+        </one-of>
+      </item>
+      <item> é mesmo isso </item>
+      <item> é isso tudo </item>
+    </one-of>
+    <item repeat="0-1">
+      Jarbas
+    </item>
+  </rule>
+  
+  <rule id="sad">
+    <one-of>
+      <item>
+        <one-of>
+          <item>estou</item>
+          <item>tou</item>
+        </one-of>
+        <one-of>
+          <item>farto</item>
+          <item>cheio</item>
+          <item>cansado</item>
+        </one-of>
+        de te ouvir 
+      </item>
+      <item> cala-te </item>
+      <item> já te calavas </item>
+    </one-of>
+  </rule>
+
+  <rule id="config">
+    <one-of>
+      <item> quero configurar-te </item>
+      <item>
+        <item>
+          <one-of>
+            <item> vamos mudar as </item>
+            <item> que tal mudarmos as </item>
+          </one-of>
+        </item>
+        <item repeat="0-1">
+          tuas
+        </item>
+        <item>
+          <one-of>
+            <item> opções </item>
+            <item> configurações </item>
+          </one-of>
+        </item> 
+      </item>
+      <item> mudar configurações </item>
+    </one-of>
+    <tag>out = "config"</tag>
+  </rule>
+
+  <rule id="voicegender">
+    <one-of>
+      <item>
+        <one-of>
+          <item> homem </item>
+          <item> senhor </item>
+          <item> rapaz </item>
+          <item> masculino </item>
+        </one-of>
+        <tag>out = "male"</tag>
+      </item>
+      <item>
+        <one-of>
+          <item> mulher </item>
+          <item> senhora </item>
+          <item> rapariga </item>
+          <item> feminino </item>
+        </one-of>
+        <tag>out = "female"</tag>
+      </item>
+    </one-of>
+  </rule>
+  
+  <rule id="voiceconfig">
+    <item repeat="0-1">
+      <one-of>
+        <item> quero ser tratado por </item>
+        <item> trata-me por </item>
+        <item> chama-me </item>
+        <item> podes chamar-me </item>
+        <item> pode chamar-me </item>
+      </one-of>
+    </item>
+    <one-of>
+      <item> 
+        chefe 
+        <tag>out = "chefe"</tag>
+      </item>
+      <item>
+        boss
+        <tag>out = "boss"</tag>
+      </item>
+      <item>
+        mestre
+        <tag>out = "mestre"</tag>
+      </item>
+      <item>
+        professor
+        <tag>out = "professor"</tag>
+      </item>
+      <item>
+        engenheiro
+        <tag>out = "engenheiro"</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="command">
+    <one-of>
+      <item>
+        <ruleref uri="#cmdHoras"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdDesligar"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdBloquear"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdData"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdCalc"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdMeteo"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdBrightness"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdEmail"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdWindows"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdWebsite"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdIniciar"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdBateria"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdExit"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdTroll"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdPlayer"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdStatus"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdDevs"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdScreenshot"/>
+      </item>
+      <item>
+        <ruleref uri="#cmdCamera"/>
+      </item>
+    </one-of>
+  </rule>
+  
+  <rule id="cmdStatus">
+    <one-of>
+      <item> como 
+        <item repeat="0-1"> é que </item>
+        estás 
+        <item repeat="0-1"> hoje </item>
+      </item>
+      <item> como 
+        <item repeat="0-1"> é que </item>
+        te sentes 
+      </item>
+      <item> 
+        <item repeat="0-1">
+          <one-of>
+            <item> está </item>
+            <item> tá </item>
+          </one-of> 
+        </item>
+        tudo bem 
+        <item repeat="0-1"> contigo </item>
+      </item>
+    </one-of>
+    <tag>out = "status"</tag>
+  </rule>
+  
+  <rule id="cmdScreenshot">
+    <one-of>
+      <item>
+        <one-of>
+          <item> tira </item>
+          <item> tira-me </item>
+        </one-of>
+        <item repeat="0-1"> aí </item> 
+        um printscreen 
+      </item>
+      <item> tira foto ao ecrã </item>
+      <item> printscreen </item>
+    </one-of>
+    <tag>out = "screenshot"</tag>
+  </rule>
+  
+  <rule id="cmdCamera">
+    <one-of>
+      <item> 
+        <one-of>
+          <item> tiras-me </item>
+          <item> tira-me </item>
+        </one-of>
+        uma foto 
+      </item>
+      <item>
+        <one-of>
+          <item> abre </item>
+          <item> mostra-me </item>
+        </one-of>
+        a
+        <one-of>
+          <item> câmera </item>
+          <item> câmara </item>
+          <item> webcam </item>
+        </one-of>
+      </item>
+    </one-of>
+    <tag>out = "camera"</tag>
+  </rule>
+  
+  <rule id="cmdDevs">
+    <one-of>
+      <item> quem foi que te fez </item>
+      <item> quem te fez </item>
+      <item> quem é que te fez </item>
+      <item> onde foste feito </item>
+    </one-of>
+    <tag>out = "devs"</tag>
+  </rule>
+
+  <rule id="cmdBateria">
+    <one-of>
+      <item> qual é 
+        <one-of>
+          <item> o estado da bateria </item>
+          <item> a tua 
+            <item repeat="0-1">
+              percentagem de
+            </item> 
+            bateria 
+          </item>
+        </one-of>
+      </item>
+      <item> quanta bateria tens 
+        <item repeat="0-1">
+          disponível
+        </item>
+      </item>
+      <item> quanto de bateria ainda aguentas </item>
+      <item> como estamos de bateria </item>
+    </one-of>
+    <tag>out = "bateria"</tag>
+  </rule>
+
+  <rule id="cmdIniciar">
+    <one-of>
+      <item> menu iniciar </item>
+      <item> iniciar </item>
+      <item> o botão iniciar é engraçado não achas </item>
+    </one-of>
+    <tag>out = "iniciar"</tag>
+  </rule>
+  
+  <rule id="cmdTroll">
+    <one-of>
+      <item> és um troll </item>
+      <item> troll </item>
+      <item> bora trolar </item>
+    </one-of>
+    <tag>out = "troll"</tag>
+  </rule>
+
+  <rule id="cmdWebsite">
+    <one-of>
+      <item> abre o browser </item>
+      <item> abre o navegador </item>
+      <item> vamos ver o site da UA </item>
+      <item> que tal está o site da UA </item>
+      <item> vamos navegar </item>
+      <item> vamos até à Web </item>
+    </one-of>
+    <tag>out = "website"</tag>
+  </rule>
+
+  <rule id="cmdWindows">
+    <ruleref uri="#initiator"/>
+    <one-of>
+      <item>
+        fecha a janela
+        <item>
+          <ruleref uri="#digito"/>
+          <tag>out = "close_window_" + rules.digito.number;</tag>
+        </item>
+      </item>
+      <item>
+        maximiza a janela
+        <item>
+          <ruleref uri="#digito"/>
+          <tag>out = "max_window_" + rules.digito.number;</tag>
+        </item>
+      </item>
+      <item>
+        minimiza a janela
+        <item>
+          <ruleref uri="#digito"/>
+          <tag>out = "min_window_" + rules.digito.number;</tag>
+        </item>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="cmdEmail">
+    <one-of>
+      <item> que tal </item>
+      <item> mostra aí </item>
+      <item> mostra-me </item>
+    </one-of>
+    <one-of>
+      <item>
+        <one-of>
+          <item> um </item>
+          <item> o </item>
+          <item> o meu </item>
+        </one-of>
+        e-mail
+      </item>
+      <item>
+        <one-of>
+          <item> a </item>
+          <item> a minha </item>
+        </one-of>
+        caixa de correio
+      </item>
+    </one-of>
+    <tag>out = "email"</tag>
+  </rule>
+
+  <rule id="cmdBrightness">
+    <one-of>
+      <item>
+        <one-of>
+          <item> aumenta a luz </item>
+          <item> aumenta a luminosidade </item>
+          <item> não vejo nada </item>
+          <item> mete mais brilhante </item>
+          <item> mete mais luz </item>
+        </one-of>
+      <tag>out = "brightness_up"</tag></item>
+      <item>
+        <one-of>
+          <item> diminui a luz </item>
+          <item> diminui a luminosidade </item>
+          <item> mete menos brilhante </item>
+          <item> mete menos luz </item>
+        </one-of>
+        <tag>out = "brightness_down"</tag>
+      </item>
+    </one-of>
+    <item repeat="0-1">
+      <one-of>
+        <item> do ecrã </item>
+        <item> no ecrã </item>
+        <item> do computador </item>
+        <item> do PC </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="cmdMeteo">
+    <item>
+      <one-of>
+        <item> diz-me </item>
+        <item> mostra-me </item>
+        <item> posso saber </item>
+        <item> sabes </item>
+      </one-of>
+    </item>
+    <item>
+      <one-of>
+        <item> o estado do tempo </item>
+        <item>
+          <one-of>
+            <item> se preciso de </item>
+            <item> se tenho de </item>
+          </one-of>
+          <one-of>
+            <item> ir de guarda chuva </item>
+            <item>
+              ir de chapéu
+              <item repeat="0-1">
+                de chuva
+              </item>
+            </item>
+            <item>
+              levar chapéu
+              <item repeat="0-1">
+                de chuva
+              </item>
+            </item>
+          </one-of>
+        </item>
+        <item>
+          se está bom
+          <item repeat="0-1">
+            tempo
+          </item>
+          <item>
+            para
+            <item repeat="0-1"> ir </item>
+            <one-of>
+              <item> a praia </item>
+              <item> à praia </item>
+              <item> passear </item>
+              <item> dar uma volta </item>
+            </one-of>
+          </item>
+        </item>
+        <item> a meteorologia </item>
+        <item>
+          que tempo está
+          <one-of>
+            <item repeat="0-1"> hoje </item>
+            <item repeat="0-1"> amanhã </item>
+          </one-of>
+        </item>
+      </one-of>
+    </item>
+    <tag>out = "meteo"</tag>
+  </rule>
+
+  <rule id="cmdCalc">
+    <one-of>
+      <item> vamos fazer contas </item>
+      <item> gosto de números </item>
+      <item> abre a calculadora </item>
+    </one-of>
+    <tag>out = "calc"</tag>
+  </rule>
+
+  <rule id="cmdData">
+    <item repeat="0-1">
+      <one-of>
+        <item> diz-me </item>
+        <item> posso saber </item>
+      </one-of>
+    </item>
+    <item>
+      <one-of>
+        <item>
+          <one-of>
+            <item> o dia actual </item>
+            <item> que dia é hoje </item>
+            <item> a que dia estamos</item>
+          </one-of>
+          <tag>out = "data_dia"</tag>
+        </item>
+        <item>
+          <one-of>
+            <item> o mês actual </item>
+            <item> a que mês estamos  </item>
+            <item> em que mês estamos </item>
+          </one-of>
+          <tag>out = "data_mes"</tag>
+        </item>
+        <item>
+          <one-of>
+            <item> o ano actual </item>
+            <item> a que ano estamos  </item>
+            <item> em que ano estamos </item>
+          </one-of>
+          <tag>out = "data_ano"</tag>
+        </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="cmdHoras">
+    <one-of>
+      <item>
+        <item>
+          <one-of>
+            <item> diz-me </item>
+            <item> mostra-me </item>
+            <item> posso saber </item>
+          </one-of>
+        </item>
+        <item>
+          <one-of>
+            <item> horas </item>
+            <item> as horas </item>
+          </one-of>
+        </item>
+      </item>
+      <item>
+        <item repeat="0-1">
+          sabes
+        </item>
+        que horas são </item>
+    </one-of>
+    <tag>out = "horas"</tag>
+  </rule>
+
+  <rule id="cmdExit">
+    <one-of>
+      <item> xau </item>
+      <item> quero sair </item>
+      <item> podes sair </item>
+      <item> já não preciso de ti </item>
+    </one-of>
+    <tag>out = "exit"</tag>
+  </rule>
+
+  <rule id="cmdDesligar">
+    <item>
+      <one-of>
+        <item> até amanhã </item>
+        <item>
+          por hoje
+          <item repeat="0-1"> já </item>
+          <item> chega </item>
+        </item>
+        <item> desliga o 
+          <one-of>
+            <item> PC </item>
+            <item> computador </item>
+          </one-of>
+        </item>
+      </one-of>
+    </item>
+    <tag>out = "desligar"</tag>
+  </rule>
+
+  <rule id="cmdBloquear">
+    <item repeat="0-1">
+      vou sair
+    </item>
+    <item>
+      <one-of>
+        <item> bloqueia a sessão </item>
+        <item> bloqueia-me a sessão </item>
+      </one-of>
+    </item>
+    <tag>out = "lock"</tag>
+  </rule>
+  
+  <rule id="cmdPlayer">
+    <one-of>
+      <item>
+        <one-of>
+          <item>
+            <one-of>
+              <item> o som </item>
+              <item> o volume </item>
+            </one-of>
+            <one-of>
+              <item> tá </item>
+              <item> está </item>
+            </one-of>
+            muito baixo
+          </item>
+          <item> deixa-me ouvir </item>
+          <item> não ouvi </item>
+          <item> aumenta o volume </item>
+          <item>
+            <one-of>
+              <item> põe </item>
+              <item> mete </item>
+            </one-of>
+            <item repeat="0-1">
+              <one-of>
+                <item> aí </item>
+                <item> o som </item>
+                <item> a música </item>
+                <item> o volume </item>
+              </one-of>
+            </item>
+            mais alto 
+          </item>
+        </one-of>
+        <tag>out = "volume_up"</tag>  
+      </item>
+      <item>
+        <one-of>
+          <item>
+            <one-of>
+              <item> o som </item>
+              <item> o volume </item>
+            </one-of>
+            <one-of>
+              <item> tá </item>
+              <item> está </item>
+            </one-of>
+            muito alto
+          </item>
+          <item> baixa o volume </item>
+          <item>
+            <one-of>
+              <item> põe </item>
+              <item> mete </item>
+            </one-of>
+            <item repeat="0-1">
+              <one-of>
+                <item> aí </item>
+                <item> o som </item>
+                <item> a música </item>
+                <item> o volume </item>
+              </one-of>
+            </item>
+            mais baixo 
+          </item>
+        </one-of>
+        <tag>out = "volume_down"</tag>  
+      </item>
+      <item>
+        <one-of>
+          <item> 
+            desliga 
+            <item repeat="0-1"> aí </item>
+            o som 
+          </item>
+        </one-of>
+        <tag>out = "volume_mute"</tag>  
+      </item>
+      <item>
+        <one-of>
+          <item> dá-me música </item>
+          <item> mete aí 
+            <one-of>
+              <item> algo </item>
+              <item> alguma coisa </item>
+              <item> uma cena </item>
+            </one-of> 
+            a tocar 
+          </item>
+          <item> 
+            vamos ouvir 
+            <one-of>
+              <item> alguma coisa </item>
+              <item> música </item>
+            </one-of> 
+          </item>
+        </one-of>
+        <tag>out = "music_player"</tag>  
+      </item>
+      <item>
+        <one-of>
+          <item> não gosto 
+            <one-of>
+              <item> dessa </item>
+              <item> desta </item>
+            </one-of> 
+            música 
+          </item>
+          <item>
+            <one-of>
+              <item> mete </item>
+              <item> passa </item>
+            </one-of>
+            <one-of>
+              <item> a </item>
+              <item> essa </item>
+            </one-of>
+            música à frente 
+          </item>
+          <item>
+            <item repeat="0-1">
+              <one-of>
+                <item> mete a </item>
+                <item> passa para a </item>
+              </one-of>
+            </item>
+            próxima música 
+          </item>
+        </one-of>
+        <tag>out = "next_track"</tag>  
+      </item>
+      <item>
+        <one-of>
+          <item>
+            <one-of>
+              <item> estava a gostar </item>
+              <item> gostei </item>
+              <item> gosto mais </item>
+            </one-of>
+            <one-of>
+              <item> da outra música </item>
+              <item> da música anterior </item>
+            </one-of>
+          </item>
+          <item>
+            mete
+            <one-of>
+              <item> a </item>
+              <item> essa </item>
+            </one-of>
+            música 
+            <one-of>
+              <item> para trás </item>
+              <item> atrás </item>
+              <item> anterior </item>
+            </one-of> 
+          </item>
+          <item> música anterior </item>
+        </one-of>
+        <tag>out = "previous_track"</tag>  
+      </item>
+      <item>
+        <one-of>
+          <item>
+            <one-of>
+              <item> põe </item>
+              <item> mete </item>
+            </one-of> 
+            <item repeat="0-1">
+              <one-of>
+                <item> aí <item repeat="0-1"> música </item></item>
+                <item> a música </item>
+              </one-of>  
+            </item> 
+            a tocar 
+          </item>
+          <item> toca
+            <item repeat="0-1"> aí </item>
+            música 
+          </item>
+          <item> 
+            dá 
+            <item repeat="0-1"> aí </item>
+            play 
+            <item repeat="0-1"> nisso </item>
+          </item>
+          <item> carrega no play </item>
+        </one-of>
+        <tag>out = "play_pause"</tag>  
+      </item>
+      <item>
+        <one-of>
+          <item>
+            <one-of>
+              <item> pára </item>
+              <item> desliga </item>
+            </one-of> 
+            <item repeat="0-1">
+              <one-of>
+                <item> aí a música </item>
+                <item> a música </item>
+              </one-of>  
+            </item>
+          </item>
+          <item> 
+            dá 
+            <item repeat="0-1"> aí </item>
+            stop 
+            <item repeat="0-1"> nisso </item>
+          </item>
+          <item> carrega no stop </item>
+        </one-of>
+        <tag>out = "stop_track"</tag>  
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="initiator">
+    <item repeat="0-1">
+      <one-of>
+        <item> importas-te de </item>
+        <item> se faz favor </item>
+        <item> por favor </item>
+        <item> se possível </item>
+        <item> é pá </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="terminator">
+    <item repeat="0-1">
+      <one-of>
+        <item> se faz favor </item>
+        <item> por favor </item>
+        <item> se possível </item>
+        <item> já </item>
+        <item> agora </item>
+        <item> meu </item>
+        <item> pá </item>
+      </one-of>
+    </item>
+  </rule>
+
+  <rule id="response">
+    <one-of>
+      <item>
+        <one-of>
+          <item> sim </item>
+          <item> ok </item>
+          <item> pode ser </item>
+          <item> claro </item>
+          <item> fixe </item>
+          <item> é isso </item>
+        </one-of>
+        <tag>out = "ok"</tag>
+      </item>
+      <item>
+        <one-of>
+          <item> não </item>
+          <item> não quero </item>
+        </one-of>
+        <tag>out = "not_ok"</tag>
+      </item>
+      <item>
+        cancelar
+        <tag>out = "cancel"</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="digito">
+    <one-of>
+      <item>
+        <one-of>
+          <item>um</item>
+          <item>primeira</item>
+          <item>primeiro</item>
+        </one-of>
+        <tag>out.number="1";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>dois</item>
+          <item>segunda</item>
+          <item>segundo</item>
+        </one-of>
+        <tag>out.number="2";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>três</item>
+          <item>terceira</item>
+          <item>terceiro</item>
+        </one-of>
+        <tag>out.number="3";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>quatro</item>
+          <item>quarta</item>
+          <item>quarto</item>
+        </one-of>
+        <tag>out.number="4";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>cinco</item>
+          <item>quinta</item>
+          <item>quinto</item>
+        </one-of>
+        <tag>out.number="5";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>seis</item>
+          <item>sexta</item>
+          <item>sexto</item>
+        </one-of>
+        <tag>out.number="6";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>sete</item>
+          <item>sétima</item>
+          <item>sétimo</item>
+        </one-of>
+        <tag>out.number="7";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>oito</item>
+          <item>oitava</item>
+          <item>oitavo</item>
+        </one-of>
+        <tag>out.number="8";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>nove</item>
+          <item>nona</item>
+          <item>nono</item>
+        </one-of>
+        <tag>out.number="9";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>zero</item>
+          <item>última</item>
+          <item>último</item>
+        </one-of>
+        <tag>out.number="0";</tag>
+      </item>
+    </one-of>
+  </rule>
+
+  <rule id="nextPrev">
+    <one-of>
+      <item>
+        <one-of>
+          <item>atual</item>
+          <item>esta</item>
+          <item>este</item>
+        </one-of>
+        <tag>out.object="this";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>anterior</item>
+          <item>antes</item>
+          <item>atrás</item>
+        </one-of>
+        <tag>out.object="previous";</tag>
+      </item>
+      <item>
+        <one-of>
+          <item>próximo</item>
+          <item>próxima</item>
+          <item>a seguir</item>
+        </one-of>
+        <tag>out.object="next";</tag>
+      </item>
+    </one-of>
+  </rule>
+</grammar>

@@ -1,0 +1,70 @@
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\Jarbas.csprojAssemblyReference.cache
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\MainWindow.g.cs
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\App.g.cs
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\AppGui_Content.g.cs
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\AppGui_MarkupCompile.cache
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\AppGui_MarkupCompile.lref
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\bin\Debug\trololo.wav
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\bin\Debug\AppGui.exe.config
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\bin\Debug\AppGui.exe
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\bin\Debug\AppGui.pdb
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\bin\Debug\Microsoft.Speech.dll
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\bin\Debug\mmisharp.dll
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\bin\Debug\Newtonsoft.Json.xml
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\MainWindow.baml
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\AppGui.g.resources
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\AppGui.Properties.Resources.resources
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\Jarbas.csproj.GenerateResource.cache
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\Jarbas.csproj.CoreCompileInputs.cache
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\Jarbas.csproj.CopyComplete
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\AppGui.exe
+C:\Users\gpatr\source\repos\jarbas_im\AppGui\AppGui\obj\Debug\AppGui.pdb
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\trololo.wav
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\AppGui.exe.config
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\AppGui.exe
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\AppGui.pdb
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\Microsoft.Kinect.dll
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\Microsoft.Kinect.VisualGestureBuilder.dll
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\Microsoft.Speech.dll
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\Newtonsoft.Json.dll
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\Microsoft.Kinect.xml
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\Microsoft.Kinect.VisualGestureBuilder.xml
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\bin\Debug\Newtonsoft.Json.xml
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\Jarbas.csprojAssemblyReference.cache
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\MainWindow.g.cs
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\App.g.cs
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\AppGui_Content.g.cs
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\AppGui_MarkupCompile.cache
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\AppGui_MarkupCompile.lref
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\MainWindow.baml
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\AppGui.g.resources
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\AppGui.Properties.Resources.resources
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\Jarbas.csproj.GenerateResource.cache
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\Jarbas.csproj.CoreCompileInputs.cache
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\Jarbas.csproj.CopyComplete
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\AppGui.exe
+C:\Users\gpatr\Desktop\ECT_5ano\IM\Projecto\FinalProject\AppGui\obj\Debug\AppGui.pdb
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\AppGui.exe.config
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\AppGui.exe
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\AppGui.pdb
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\trololo.wav
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\AppGui.exe
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\AppGui.pdb
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\Microsoft.Kinect.dll
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\Microsoft.Kinect.VisualGestureBuilder.dll
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\Microsoft.Speech.dll
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\Newtonsoft.Json.dll
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\Microsoft.Kinect.xml
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\Microsoft.Kinect.VisualGestureBuilder.xml
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\bin\Debug\Newtonsoft.Json.xml
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\Jarbas.csprojResolveAssemblyReference.cache
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\MainWindow.g.cs
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\App.g.cs
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\AppGui_Content.g.cs
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\AppGui_MarkupCompile.cache
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\AppGui_MarkupCompile.lref
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\MainWindow.baml
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\AppGui.g.resources
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\AppGui.Properties.Resources.resources
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Gesture\FinalProject\AppGui\obj\Debug\Jarbas.csproj.GenerateResource.Cache

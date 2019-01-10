@@ -1,0 +1,670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<scxml xmlns="http://www.w3.org/2005/07/scxml" xmlns:commons="http://commons.apache.org/scxml" xmlns:emma="http://www.w3.org/2003/04/emma" xmlns:mmi="http://www.w3.org/2008/04/mmi-arch" xmlns:schemaLocation="http://www.w3.org/2005/07/scxml scxml.xsd http://commons.apache.org/scxml commons.xsd http://www.w3.org/2008/04/mmi-arch mmi.xsd http://www.w3.org/2003/04/emma emma.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" version="1.0" initialstate="init">
+  <datamodel>
+    <data name="data1" />
+    <data name="data2" />
+  </datamodel>
+  <state id="init">
+    <onentry>
+      <log label="[init]" expr="READY" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="main">
+    <onentry>
+      <log label="[main]" expr="READY" />
+    </onentry>
+    <transition target="ssecondmod[jarbas_init]" event="[Jarbas_init]" />
+    <transition target="ssecondmod[swipe_left]" event="[Swipe_Left]" />
+    <transition target="ssecondmod[swipe_right]" event="[Swipe_Right]" />
+    <transition target="sspeech[next_track]" event="[next_track]" />
+    <transition target="sspeech[previous_track]" event="[previous_track]" />
+    <transition target="sspeech[website]" event="[website]" />
+    <transition target="sspeech[meteo]" event="[meteo]" />
+    <transition target="ssecondmod[hands_air]" event="[Hands_air]" />
+    <transition target="sspeech[calc]" event="[calc]" />
+    <transition target="ssecondmod[play_pause]" event="[Play_Pause]" />
+    <transition target="sspeech[lazer]" event="[lazer]" />
+    <transition target="sspeech[brightness_down]" event="[brightness_down]" />
+    <transition target="sspeech[camera]" event="[camera]" />
+    <transition target="sspeech[screenshot]" event="[screenshot]" />
+    <transition target="sspeech[lock]" event="[lock]" />
+    <transition target="sspeech[trabalho]" event="[trabalho]" />
+    <transition target="sspeech[brightness_up]" event="[brightness_up]" />
+    <transition target="ssecondmod[kill]" event="[Kill]" />
+    <transition target="sspeech[email]" event="[email]" />
+  </state>
+  <state id="ssecondmod[jarbas_init]">
+    <onentry>
+      <log label="[ssecondmod[jarbas_init]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-ssecondmod[jarbas_init]" event="timeout-ssecondmod[jarbas_init]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="secondmod[jarbas_init]-final" event="timeout-ssecondmod[jarbas_init]" />
+    <transition target="ssecondmod[jarbas_init]-speech[lock]" event="[lock]" />
+    <onexit>
+      <cancel sendid="state1-timer-ssecondmod[jarbas_init]" />
+    </onexit>
+  </state>
+  <state id="secondmod[jarbas_init]-final">
+    <onentry>
+      <log label="[secondmod[jarbas_init]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[lock]')}" />
+      <send event="LOCK_SESSION" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[jarbas_init]-speech[lock]">
+    <onentry>
+      <log label="[ssecondmod[jarbas_init]-speech[lock]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[lock]')}" />
+      <send event="LOCK_SESSION" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_left]">
+    <onentry>
+      <log label="[ssecondmod[swipe_left]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-ssecondmod[swipe_left]" event="timeout-ssecondmod[swipe_left]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-ssecondmod[swipe_left]" />
+    <transition target="ssecondmod[swipe_left]-speech[previous_track]" event="[previous_track]" />
+    <transition target="ssecondmod[swipe_left]-speech[brightness_up]" event="[brightness_up]" />
+    <transition target="ssecondmod[swipe_left]-speech[email]" event="[email]" />
+    <transition target="ssecondmod[swipe_left]-speech[calc]" event="[calc]" />
+    <transition target="ssecondmod[swipe_left]-speech[website]" event="[website]" />
+    <transition target="ssecondmod[swipe_left]-speech[meteo]" event="[meteo]" />
+    <transition target="ssecondmod[swipe_left]-speech[camera]" event="[camera]" />
+    <onexit>
+      <cancel sendid="state1-timer-ssecondmod[swipe_left]" />
+    </onexit>
+  </state>
+  <state id="ssecondmod[swipe_left]-speech[previous_track]">
+    <onentry>
+      <log label="[ssecondmod[swipe_left]-speech[previous_track]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[previous_track_config]')}" />
+      <send event="PREVIOUS_TRACK" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_left]-speech[brightness_up]">
+    <onentry>
+      <log label="[ssecondmod[swipe_left]-speech[brightness_up]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[brightness_up_config]')}" />
+      <send event="BRIGHTNESS_UP" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_left]-speech[email]">
+    <onentry>
+      <log label="[ssecondmod[swipe_left]-speech[email]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[email_left_config]')}" />
+      <send event="EMAIL_LEFT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_left]-speech[calc]">
+    <onentry>
+      <log label="[ssecondmod[swipe_left]-speech[calc]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[calc_left_config]')}" />
+      <send event="CALC_LEFT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_left]-speech[website]">
+    <onentry>
+      <log label="[ssecondmod[swipe_left]-speech[website]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[website_left_config]')}" />
+      <send event="WEBSITE_LEFT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_left]-speech[meteo]">
+    <onentry>
+      <log label="[ssecondmod[swipe_left]-speech[meteo]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[meteo_left_config]')}" />
+      <send event="METEO_LEFT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_left]-speech[camera]">
+    <onentry>
+      <log label="[ssecondmod[swipe_left]-speech[camera]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[camera_left_config]')}" />
+      <send event="CAMERA_LEFT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_right]">
+    <onentry>
+      <log label="[ssecondmod[swipe_right]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-ssecondmod[swipe_right]" event="timeout-ssecondmod[swipe_right]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-ssecondmod[swipe_right]" />
+    <transition target="ssecondmod[swipe_right]-speech[next_track]" event="[next_track]" />
+    <transition target="ssecondmod[swipe_right]-speech[brightness_down]" event="[brightness_down]" />
+    <transition target="ssecondmod[swipe_right]-speech[email]" event="[email]" />
+    <transition target="ssecondmod[swipe_right]-speech[calc]" event="[calc]" />
+    <transition target="ssecondmod[swipe_right]-speech[website]" event="[website]" />
+    <transition target="ssecondmod[swipe_right]-speech[meteo]" event="[meteo]" />
+    <transition target="ssecondmod[swipe_right]-speech[camera]" event="[camera]" />
+    <onexit>
+      <cancel sendid="state1-timer-ssecondmod[swipe_right]" />
+    </onexit>
+  </state>
+  <state id="ssecondmod[swipe_right]-speech[next_track]">
+    <onentry>
+      <log label="[ssecondmod[swipe_right]-speech[next_track]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[next_track_config]')}" />
+      <send event="NEXT_TRACK" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_right]-speech[brightness_down]">
+    <onentry>
+      <log label="[ssecondmod[swipe_right]-speech[brightness_down]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[brightness_down_config]')}" />
+      <send event="BRIGHTNESS_DOWN" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_right]-speech[email]">
+    <onentry>
+      <log label="[ssecondmod[swipe_right]-speech[email]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[email_right_config]')}" />
+      <send event="EMAIL_RIGHT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_right]-speech[calc]">
+    <onentry>
+      <log label="[ssecondmod[swipe_right]-speech[calc]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[calc_right_config]')}" />
+      <send event="CALC_RIGHT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_right]-speech[website]">
+    <onentry>
+      <log label="[ssecondmod[swipe_right]-speech[website]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[website_right_config]')}" />
+      <send event="WEBSITE_RIGHT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_right]-speech[meteo]">
+    <onentry>
+      <log label="[ssecondmod[swipe_right]-speech[meteo]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[meteo_right_config]')}" />
+      <send event="METEO_RIGHT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[swipe_right]-speech[camera]">
+    <onentry>
+      <log label="[ssecondmod[swipe_right]-speech[camera]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[camera_right_config]')}" />
+      <send event="CAMERA_RIGHT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[next_track]">
+    <onentry>
+      <log label="[sspeech[next_track]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[next_track]" event="timeout-sspeech[next_track]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[next_track]" />
+    <transition target="sspeech[next_track]-secondmod[swipe_right]" event="[Swipe_Right]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[next_track]" />
+    </onexit>
+  </state>
+  <state id="sspeech[next_track]-secondmod[swipe_right]">
+    <onentry>
+      <log label="[sspeech[next_track]-secondmod[swipe_right]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[next_track_config]')}" />
+      <send event="NEXT_TRACK" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[previous_track]">
+    <onentry>
+      <log label="[sspeech[previous_track]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[previous_track]" event="timeout-sspeech[previous_track]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[previous_track]" />
+    <transition target="sspeech[previous_track]-secondmod[swipe_left]" event="[Swipe_Left]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[previous_track]" />
+    </onexit>
+  </state>
+  <state id="sspeech[previous_track]-secondmod[swipe_left]">
+    <onentry>
+      <log label="[sspeech[previous_track]-secondmod[swipe_left]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[previous_track_config]')}" />
+      <send event="PREVIOUS_TRACK" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[website]">
+    <onentry>
+      <log label="[sspeech[website]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[website]" event="timeout-sspeech[website]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[website]" />
+    <transition target="sspeech[website]-secondmod[swipe_left]" event="[Swipe_Left]" />
+    <transition target="sspeech[website]-secondmod[swipe_right]" event="[Swipe_Right]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[website]" />
+    </onexit>
+  </state>
+  <state id="sspeech[website]-secondmod[swipe_left]">
+    <onentry>
+      <log label="[sspeech[website]-secondmod[swipe_left]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[website_left_config]')}" />
+      <send event="WEBSITE_LEFT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[website]-secondmod[swipe_right]">
+    <onentry>
+      <log label="[sspeech[website]-secondmod[swipe_right]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[website_right_config]')}" />
+      <send event="WEBSITE_RIGHT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[meteo]">
+    <onentry>
+      <log label="[sspeech[meteo]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[meteo]" event="timeout-sspeech[meteo]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[meteo]" />
+    <transition target="sspeech[meteo]-secondmod[swipe_left]" event="[Swipe_Left]" />
+    <transition target="sspeech[meteo]-secondmod[swipe_right]" event="[Swipe_Right]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[meteo]" />
+    </onexit>
+  </state>
+  <state id="sspeech[meteo]-secondmod[swipe_left]">
+    <onentry>
+      <log label="[sspeech[meteo]-secondmod[swipe_left]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[meteo_left_config]')}" />
+      <send event="METEO_LEFT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[meteo]-secondmod[swipe_right]">
+    <onentry>
+      <log label="[sspeech[meteo]-secondmod[swipe_right]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[meteo_right_config]')}" />
+      <send event="METEO_RIGHT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[hands_air]">
+    <onentry>
+      <log label="[ssecondmod[hands_air]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-ssecondmod[hands_air]" event="timeout-ssecondmod[hands_air]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="secondmod[hands_air]-final" event="timeout-ssecondmod[hands_air]" />
+    <transition target="ssecondmod[hands_air]-speech[lazer]" event="[lazer]" />
+    <onexit>
+      <cancel sendid="state1-timer-ssecondmod[hands_air]" />
+    </onexit>
+  </state>
+  <state id="secondmod[hands_air]-final">
+    <onentry>
+      <log label="[secondmod[hands_air]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[lazer]')}" />
+      <send event="MODO_LAZER" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[hands_air]-speech[lazer]">
+    <onentry>
+      <log label="[ssecondmod[hands_air]-speech[lazer]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[lazer]')}" />
+      <send event="MODO_LAZER" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[calc]">
+    <onentry>
+      <log label="[sspeech[calc]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[calc]" event="timeout-sspeech[calc]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[calc]" />
+    <transition target="sspeech[calc]-secondmod[swipe_left]" event="[Swipe_Left]" />
+    <transition target="sspeech[calc]-secondmod[swipe_right]" event="[Swipe_Right]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[calc]" />
+    </onexit>
+  </state>
+  <state id="sspeech[calc]-secondmod[swipe_left]">
+    <onentry>
+      <log label="[sspeech[calc]-secondmod[swipe_left]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[calc_left_config]')}" />
+      <send event="CALC_LEFT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[calc]-secondmod[swipe_right]">
+    <onentry>
+      <log label="[sspeech[calc]-secondmod[swipe_right]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[calc_right_config]')}" />
+      <send event="CALC_RIGHT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[play_pause]">
+    <onentry>
+      <log label="[ssecondmod[play_pause]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-ssecondmod[play_pause]" event="timeout-ssecondmod[play_pause]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="secondmod[play_pause]-final" event="timeout-ssecondmod[play_pause]" />
+    <transition target="ssecondmod[play_pause]-speech[screenshot]" event="[screenshot]" />
+    <onexit>
+      <cancel sendid="state1-timer-ssecondmod[play_pause]" />
+    </onexit>
+  </state>
+  <state id="secondmod[play_pause]-final">
+    <onentry>
+      <log label="[secondmod[play_pause]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[screenshot]')}" />
+      <send event="SCREENSHOT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[play_pause]-speech[screenshot]">
+    <onentry>
+      <log label="[ssecondmod[play_pause]-speech[screenshot]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[screenshot]')}" />
+      <send event="SCREENSHOT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[lazer]">
+    <onentry>
+      <log label="[sspeech[lazer]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[lazer]" event="timeout-sspeech[lazer]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="speech[lazer]-final" event="timeout-sspeech[lazer]" />
+    <transition target="sspeech[lazer]-secondmod[hands_air]" event="[Hands_air]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[lazer]" />
+    </onexit>
+  </state>
+  <state id="speech[lazer]-final">
+    <onentry>
+      <log label="[speech[lazer]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[lazer]')}" />
+      <send event="MODO_LAZER" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[lazer]-secondmod[hands_air]">
+    <onentry>
+      <log label="[sspeech[lazer]-secondmod[hands_air]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[lazer]')}" />
+      <send event="MODO_LAZER" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[brightness_down]">
+    <onentry>
+      <log label="[sspeech[brightness_down]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[brightness_down]" event="timeout-sspeech[brightness_down]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[brightness_down]" />
+    <transition target="sspeech[brightness_down]-secondmod[swipe_right]" event="[Swipe_Right]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[brightness_down]" />
+    </onexit>
+  </state>
+  <state id="sspeech[brightness_down]-secondmod[swipe_right]">
+    <onentry>
+      <log label="[sspeech[brightness_down]-secondmod[swipe_right]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[brightness_down_config]')}" />
+      <send event="BRIGHTNESS_DOWN" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[camera]">
+    <onentry>
+      <log label="[sspeech[camera]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[camera]" event="timeout-sspeech[camera]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[camera]" />
+    <transition target="sspeech[camera]-secondmod[swipe_left]" event="[Swipe_Left]" />
+    <transition target="sspeech[camera]-secondmod[swipe_right]" event="[Swipe_Right]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[camera]" />
+    </onexit>
+  </state>
+  <state id="sspeech[camera]-secondmod[swipe_left]">
+    <onentry>
+      <log label="[sspeech[camera]-secondmod[swipe_left]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[camera_left_config]')}" />
+      <send event="CAMERA_LEFT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[camera]-secondmod[swipe_right]">
+    <onentry>
+      <log label="[sspeech[camera]-secondmod[swipe_right]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[camera_right_config]')}" />
+      <send event="CAMERA_RIGHT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[screenshot]">
+    <onentry>
+      <log label="[sspeech[screenshot]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[screenshot]" event="timeout-sspeech[screenshot]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="speech[screenshot]-final" event="timeout-sspeech[screenshot]" />
+    <transition target="sspeech[screenshot]-secondmod[play_pause]" event="[Play_Pause]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[screenshot]" />
+    </onexit>
+  </state>
+  <state id="speech[screenshot]-final">
+    <onentry>
+      <log label="[speech[screenshot]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[screenshot]')}" />
+      <send event="SCREENSHOT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[screenshot]-secondmod[play_pause]">
+    <onentry>
+      <log label="[sspeech[screenshot]-secondmod[play_pause]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[screenshot]')}" />
+      <send event="SCREENSHOT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[lock]">
+    <onentry>
+      <log label="[sspeech[lock]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[lock]" event="timeout-sspeech[lock]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="speech[lock]-final" event="timeout-sspeech[lock]" />
+    <transition target="sspeech[lock]-secondmod[jarbas_init]" event="[Jarbas_init]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[lock]" />
+    </onexit>
+  </state>
+  <state id="speech[lock]-final">
+    <onentry>
+      <log label="[speech[lock]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[lock]')}" />
+      <send event="LOCK_SESSION" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[lock]-secondmod[jarbas_init]">
+    <onentry>
+      <log label="[sspeech[lock]-secondmod[jarbas_init]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[lock]')}" />
+      <send event="LOCK_SESSION" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[trabalho]">
+    <onentry>
+      <log label="[sspeech[trabalho]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[trabalho]" event="timeout-sspeech[trabalho]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="speech[trabalho]-final" event="timeout-sspeech[trabalho]" />
+    <transition target="sspeech[trabalho]-secondmod[kill]" event="[Kill]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[trabalho]" />
+    </onexit>
+  </state>
+  <state id="speech[trabalho]-final">
+    <onentry>
+      <log label="[speech[trabalho]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[trabalho]')}" />
+      <send event="MODO_TRABALHO" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[trabalho]-secondmod[kill]">
+    <onentry>
+      <log label="[sspeech[trabalho]-secondmod[kill]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[trabalho]')}" />
+      <send event="MODO_TRABALHO" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[brightness_up]">
+    <onentry>
+      <log label="[sspeech[brightness_up]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[brightness_up]" event="timeout-sspeech[brightness_up]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[brightness_up]" />
+    <transition target="sspeech[brightness_up]-secondmod[swipe_left]" event="[Swipe_Left]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[brightness_up]" />
+    </onexit>
+  </state>
+  <state id="sspeech[brightness_up]-secondmod[swipe_left]">
+    <onentry>
+      <log label="[sspeech[brightness_up]-secondmod[swipe_left]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[brightness_up_config]')}" />
+      <send event="BRIGHTNESS_UP" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[kill]">
+    <onentry>
+      <log label="[ssecondmod[kill]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-ssecondmod[kill]" event="timeout-ssecondmod[kill]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="secondmod[kill]-final" event="timeout-ssecondmod[kill]" />
+    <transition target="ssecondmod[kill]-speech[trabalho]" event="[trabalho]" />
+    <onexit>
+      <cancel sendid="state1-timer-ssecondmod[kill]" />
+    </onexit>
+  </state>
+  <state id="secondmod[kill]-final">
+    <onentry>
+      <log label="[secondmod[kill]-final]" expr="READY" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF2(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1, '[trabalho]')}" />
+      <send event="MODO_TRABALHO" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="ssecondmod[kill]-speech[trabalho]">
+    <onentry>
+      <log label="[ssecondmod[kill]-speech[trabalho]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[trabalho]')}" />
+      <send event="MODO_TRABALHO" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[email]">
+    <onentry>
+      <log label="[sspeech[email]]" expr="READY" />
+      <assign name="data1" expr="${_eventdata.data}" />
+      <send id="state1-timer-sspeech[email]" event="timeout-sspeech[email]" delay="1500" target="" targettype="" namelist="" />
+    </onentry>
+    <transition target="main" event="timeout-sspeech[email]" />
+    <transition target="sspeech[email]-secondmod[swipe_left]" event="[Swipe_Left]" />
+    <transition target="sspeech[email]-secondmod[swipe_right]" event="[Swipe_Right]" />
+    <onexit>
+      <cancel sendid="state1-timer-sspeech[email]" />
+    </onexit>
+  </state>
+  <state id="sspeech[email]-secondmod[swipe_left]">
+    <onentry>
+      <log label="[sspeech[email]-secondmod[swipe_left]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[email_left_config]')}" />
+      <send event="EMAIL_LEFT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+  <state id="sspeech[email]-secondmod[swipe_right]">
+    <onentry>
+      <log label="[sspeech[email]-secondmod[swipe_right]]" expr="READY" />
+      <assign name="data2" expr="${_eventdata.data}" />
+      <commons:var name="newExtensionNotification" expr="${mmi:newExtensionNotificationF(contextId, 'FUSION', 'IM', mmi:newRequestId(contextId), null, data1,data2, '[email_right_config]')}" />
+      <send event="EMAIL_RIGHT" target="IM" targettype="MC" namelist="newExtensionNotification" />
+    </onentry>
+    <transition target="main" />
+  </state>
+</scxml>
