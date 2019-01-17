@@ -88,7 +88,8 @@ namespace gestureModality
             // set data context objects for display in UI
             this.DataContext = this;
             this.kinectBodyViewbox.DataContext = this.kinectBodyView;
-            this.gestureResultGrid.DataContext = this.gestureResultView;
+            
+            //this.gestureResultGrid.DataContext = this.gestureResultView;
 
         }
 
@@ -315,15 +316,20 @@ namespace gestureModality
                         this.gestureResultView.Jarbas_Init < 0.2)
                 {
                     reset = true;
+                    this.stackpanelBox.Background = new SolidColorBrush(Colors.Red);
+                    this.stacklabel.Text = "";
                 }
             }
             else
             {
-                if (this.gestureResultView.Hands_air > 0.7)
+                if (this.gestureResultView.Hands_air > 0.8)
                 {
                     gesture += "[\"" + "Hands_air\"] }";
                     gesture.Substring(0, gesture.Length - 2);
-                     
+
+                    this.stackpanelBox.Background = new SolidColorBrush(Colors.Green);
+                    this.stacklabel.Text = "MODO LAZER";
+
                     var exNot = lce.ExtensionNotification("", "", this.gestureResultView.Hands_air, gesture);
                     mmic.Send(exNot);
                     reset = false;
@@ -334,7 +340,10 @@ namespace gestureModality
                 {
                     gesture += "[\"" + "Kill\"] }";
                     gesture.Substring(0, gesture.Length - 2);
-                     
+
+                    this.stackpanelBox.Background = new SolidColorBrush(Colors.Green);
+                    this.stacklabel.Text = "MODO TRABALHO";
+
                     var exNot = lce.ExtensionNotification("", "", this.gestureResultView.Kill, gesture);
                     mmic.Send(exNot);
                     reset = false;
@@ -345,7 +354,9 @@ namespace gestureModality
                 {
                     gesture += "[\"" + "Headphones\"] }";
                     gesture.Substring(0, gesture.Length - 2);
-                     
+
+                    
+
                     var exNot = lce.ExtensionNotification("", "", this.gestureResultView.Headphones, gesture);
                     mmic.Send(exNot);
                     reset = false;
@@ -356,7 +367,10 @@ namespace gestureModality
                 {
                     gesture += "[\"" + "Play_Pause\"] }";
                     gesture.Substring(0, gesture.Length - 2);
-                     
+
+                    this.stackpanelBox.Background = new SolidColorBrush(Colors.Green);
+                    this.stacklabel.Text = "SCREENSHOT";
+
                     var exNot = lce.ExtensionNotification("", "", this.gestureResultView.Play_Pause, gesture);
                     mmic.Send(exNot);
                     reset = false;
@@ -367,7 +381,10 @@ namespace gestureModality
                 {
                     gesture += "[\"" + "Swipe_Left\"] }";
                     gesture.Substring(0, gesture.Length - 2);
-                     
+
+                    this.stackpanelBox.Background = new SolidColorBrush(Colors.Green);
+                    this.stacklabel.Text = "SWIPE ESQUERDA";
+
                     var exNot = lce.ExtensionNotification("", "", this.gestureResultView.Swipe_Left, gesture);
                     mmic.Send(exNot);
                     reset = false;
@@ -378,7 +395,10 @@ namespace gestureModality
                 {
                     gesture += "[\"" + "Swipe_Right\"] }";
                     gesture.Substring(0, gesture.Length - 2);
-                    
+
+                    this.stackpanelBox.Background = new SolidColorBrush(Colors.Green);
+                    this.stacklabel.Text = "SWIPE DIREITA";
+
                     var exNot = lce.ExtensionNotification("", "", this.gestureResultView.Swipe_Right, gesture);
                     mmic.Send(exNot);
                     reset = false;
@@ -389,7 +409,10 @@ namespace gestureModality
                 {
                     gesture += "[\"" + "Jarbas_init\"] }";
                     gesture.Substring(0, gesture.Length - 2);
-                    
+
+                    //this.stackpanelBox.Background = new SolidColorBrush(Colors.Green);
+                    //this.stacklabel.Text = "TERMINAR SESSÃO";
+
                     var exNot = lce.ExtensionNotification("", "", this.gestureResultView.Jarbas_Init, gesture);
                     mmic.Send(exNot);
                     reset = false;

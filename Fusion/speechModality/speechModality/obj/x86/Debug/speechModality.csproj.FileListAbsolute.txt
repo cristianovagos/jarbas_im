@@ -16,3 +16,4 @@ C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Fusion\s
 C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Fusion\speechModality\speechModality\obj\x86\Debug\speechModality.csproj.GenerateResource.Cache
 C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Fusion\speechModality\speechModality\obj\x86\Debug\speechModality.exe
 C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Fusion\speechModality\speechModality\obj\x86\Debug\speechModality.pdb
+C:\DATA\ECT\5 Ano\Interação Multimodal\Projeto\Repositório\jarbas_im\Fusion\speechModality\speechModality\obj\x86\Debug\speechModality.csprojResolveAssemblyReference.cache

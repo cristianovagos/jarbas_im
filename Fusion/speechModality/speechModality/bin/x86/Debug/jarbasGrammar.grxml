@@ -11,6 +11,14 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
         <ruleref uri="#terminator"/>
         <tag>out.command = rules.command;</tag>
       </item>
+	  <item>
+        <ruleref uri="#modolazer"/>
+        <tag>out.lazer = "lazer";</tag>
+      </item>
+	  <item>
+        <ruleref uri="#modotrabalho"/>
+        <tag>out.trabalho = "trabalho";</tag>
+      </item>
       <item>
         <ruleref uri="#response"/>
         <tag>out.response = rules.response;</tag>
@@ -47,6 +55,40 @@ xmlns="http://www.w3.org/2001/06/grammar" tag-format="semantics/1.0" >
       <item repeat="0-1">
         Jarbas
       </item>
+    </item>
+  </rule>
+  
+  <rule id="modolazer">
+    <item>
+	  <item repeat="0-1">
+        Jarbas
+      </item>
+	  <item repeat="0-1">
+        muda para o
+      </item>
+		modo 
+	  <item repeat="0-1">
+        de
+      </item>
+		lazer 
+      <ruleref uri="#terminator"/>
+    </item>
+  </rule>
+  
+  <rule id="modotrabalho">
+    <item>
+	  <item repeat="0-1">
+        Jarbas
+      </item>
+	  <item repeat="0-1">
+        muda para o
+      </item>
+		modo 
+	  <item repeat="0-1">
+        de
+      </item>
+		trabalho 
+      <ruleref uri="#terminator"/>
     </item>
   </rule>
   

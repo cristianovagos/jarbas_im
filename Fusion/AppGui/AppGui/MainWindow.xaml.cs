@@ -113,6 +113,7 @@ namespace AppGui
         private bool awaitingShutdownConfirmation = false;
         private bool awaitingJarbasExitConfirmation = false;
         private bool awaitingWindowCloseConfirmation = false;
+        private bool awaitingStartCommand = true;
 
         private string swipe_left_lazer_action = "music_player";
         private string swipe_left_lazer_action_string = "ouvir música";
@@ -129,7 +130,7 @@ namespace AppGui
         private static long timeStamp = long.Parse(DateTime.Now.ToString("yyyyMMddHHmmssffff"));
 
         private static Action functionToCall = () => {
-            if(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmssffff")) > (timeStamp + 1000000))
+            if(long.Parse(DateTime.Now.ToString("yyyyMMddHHmmssffff")) > (timeStamp + 2000000))
             {
                 warnUserTimeout();
             }
@@ -150,7 +151,6 @@ namespace AppGui
             mmiC = new MmiCommunication("localhost", 8000, "User1", "GUI");
             mmiC.Message += MmiC_Message;
 
-            sayHello();
             mmiC.Start();
         }
         
@@ -168,8 +168,22 @@ namespace AppGui
        
         private void sayHello()
         {
+            if (awaitingStartCommand)
+            {
+                awaitingStartCommand = false;
+                sayInitialization();
+                return;
+            }
+
             rnd = new Random();
             t.Speak(_helloMessages[rnd.Next(0, _helloMessages.Length)]);
+        }
+
+        private void sayInitialization()
+        {
+            t.Speak(Properties.Settings.Default.voiceCallClient +
+               ", o meu nome é Jarbas, fui criado pelo Cristiano Vagos e o Gabriel Patrício. " +
+               "Sou um controlador do sistema operativo Windows e estou aqui para o ajudar. Por defeito, está no modo de trabalho. Súaipe Esquerda para Email.Súaipe Direita para Navegar");
         }
        
         private void MmiC_Message(object sender, MmiEventArgs e)
@@ -180,7 +194,17 @@ namespace AppGui
             Console.WriteLine(e.Message);
             var doc = XDocument.Parse(e.Message);
 
-            string raw_confidence = (string)doc.Descendants(emma_ns+"interpretation").FirstOrDefault().Attribute(emma_ns+"confidence").Value;
+            string raw_confidence;
+
+            if(doc.Descendants(emma_ns + "interpretation").Count() == 1)
+            {
+                raw_confidence = (string)doc.Descendants(emma_ns + "interpretation").FirstOrDefault().Attribute(emma_ns + "confidence").Value;
+            }
+            else
+            {
+                raw_confidence = (string)doc.Descendants(emma_ns + "interpretation").ElementAt(1).Attribute(emma_ns + "confidence").Value;
+            }
+            
             Console.WriteLine("confidence: " + raw_confidence);
             float confidence = 0F;
             float.TryParse(raw_confidence.Replace(".", ","), out confidence);
@@ -203,15 +227,22 @@ namespace AppGui
                 case "Kill":
                 case "Headphones":
                 case "Jarbas_init":
-                    gesture_command = true;
+                case "screenshot":
+                case "lock":
+                case "lazer":
+                case "trabalho":
+                    if(!awaitingStartCommand)
+                    {
+                        gesture_command = true;
+                    }
                     break;
             }
 
             Console.WriteLine("confidence: " + confidence);
             Console.WriteLine("command: " + command);
+            Console.WriteLine("gestureCommand: " + gesture_command);
             Console.WriteLine("awaitingConfirmation: " + awaitingConfirmation);
-            Console.WriteLine("awaitingVoiceConfirmation: " + awaitingVoiceConfirmation);
-            Console.WriteLine("awaitingVoiceGender: " + awaitingVoiceGender);
+            Console.WriteLine("awaitingStartCommand: " + awaitingStartCommand);
             Console.WriteLine("awaitingWindowCloseConfirmation: " + awaitingWindowCloseConfirmation);
 
             if (!gesture_command && confidence >= 0.4 && confidence < 0.6)
@@ -227,6 +258,12 @@ namespace AppGui
             if (!(command.Equals("not_ok") || command.Equals("ok")) && awaitingConfirmation)
             {
                 Console.WriteLine("return awaitingconfirmation");
+                return;
+            }
+
+            if(!(command.Equals("greeting")) && awaitingStartCommand)
+            {
+                Console.WriteLine("return awaiting start command");
                 return;
             }
 
@@ -373,6 +410,14 @@ namespace AppGui
                         + ".Agora poderá ver a sua câmara com Súaipe Direita no modo trabalho");
                     swipe_right_trabalho_action = "camera";
                     swipe_right_trabalho_action_string = "ver a sua câmara";
+                    return;
+
+                case "greeting":
+                    sayHello();
+                    return;
+
+                case "devs":
+                    sayDevsInformation();
                     return;
 
                 case "status":
@@ -545,6 +590,10 @@ namespace AppGui
                     {
                         Console.WriteLine("not ok, awaiting jarbas exit confirmation");
                         awaitingJarbasExitConfirmation = false;
+                    }
+                    else
+                    {
+                        awaitingConfirmation = false;
                     }
 
                     return;
@@ -877,8 +926,13 @@ namespace AppGui
             t.Speak(phrase);
         }
 
-        [DllImport("User32")]
+        /*
+         * [DllImport("User32")]
         private static extern int keybd_event(Byte bVk, Byte bScan, long dwFlags, long dwExtraInfo);
+        */
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern void keybd_event(byte bVk, byte bScan, int dwFlags, int dwExtraInfo);
         private const byte UP = 2;
         private const byte CTRL = 17;
         private const byte ESC = 27;

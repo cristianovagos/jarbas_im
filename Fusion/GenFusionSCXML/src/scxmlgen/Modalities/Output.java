@@ -23,7 +23,14 @@ public enum Output implements IOutput{
     METEO_LEFT("[meteo_left_config]"),
     METEO_RIGHT("[meteo_right_config]"),
     CAMERA_LEFT("[camera_left_config]"),
-    CAMERA_RIGHT("[camera_right_config]")
+    CAMERA_RIGHT("[camera_right_config]"),
+    EMAIL("[email]"),
+    CALC("[calc]"),
+    WEBSITE("[website]"),
+    METEO("[meteo]"),
+    CAMERA("[camera]"),
+    SWIPE_LEFT("[Swipe_Left]"),
+    SWIPE_RIGHT("[Swipe_Right]")
     ;
     
     private String event;

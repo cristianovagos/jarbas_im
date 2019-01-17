@@ -24,6 +24,10 @@ public class GenFusionSCXML {
 
         FusionGenerator fg = new FusionGenerator();
 
+        // SINGLE
+        fg.Single(SecondMod.G_SWIPE_LEFT, Output.SWIPE_LEFT);
+        fg.Single(SecondMod.G_SWIPE_RIGHT, Output.SWIPE_RIGHT);
+        
         // REDUNDANCIAS
         fg.Redundancy(Speech.S_SCREENSHOT, SecondMod.G_SCREENSHOT, Output.SCREENSHOT);
         fg.Redundancy(Speech.S_LAZER, SecondMod.G_HANDS_AIR, Output.MODO_LAZER);
